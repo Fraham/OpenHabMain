@@ -32,7 +32,7 @@ end
 // This rule will be used to test Scale transformation service
 rule "Compute humidex"
 when
-        Item Weather_Temperature changed or
+    Item Weather_Temperature changed or
 	Item Weather_Humidity changed
 then
 	var Number T = Weather_Temperature.state as DecimalType
@@ -42,6 +42,7 @@ then
 	var Number humidex = T + (new Double(5) / new Double(9)) * (e - 10)
 	postUpdate(Weather_Humidex, humidex)
 end
+
 rule "PI Strip Lights"
     when
         Item FF_GBed_Strip received command
@@ -51,18 +52,22 @@ rule "PI Strip Lights"
             case OFF : sendHttpGetRequest("http://192.168.1.11:5000/off")
 		}
 end
+
 rule "Buzzer"
 	when
 		Item FF_GBed_Buzzer received command
 	then
 		sendHttpGetRequest("http://192.168.1.11:5000/buzzer/alarm")
 end
+
 rule "Buzzer @ 10:00"
 when
     Time cron "0 0 10 * * ?" // means 10:00:00 every day of every month, don't bother about weekdays
 then
     sendHttpGetRequest("http://192.168.1.11:5000/buzzer/alarm/10")
+    sendCommand(FF_GBed_Strip, ON)
 end
+
 rule "House Alarm"
 	when 
 		Item gMotion changed from OFF to ON 
