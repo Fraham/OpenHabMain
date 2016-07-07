@@ -99,6 +99,6 @@ rule "House Sleep"
             case ON : 
             	sendCommand(Lights, OFF)
             case OFF : 
-            	
+            	sendCommand(FF_GBed_Buzzer, ON)
 		}
 end
