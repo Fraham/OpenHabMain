@@ -60,7 +60,7 @@ rule "Buzzer"
 		sendHttpGetRequest("http://192.168.1.11:5000/buzzer/alarm")
 end
 
-rule "Buzzer @ 10:00"
+rule "Morning Alarm @ 10:00"
 when
     Time cron "0 0 10 * * ?" // means 10:00:00 every day of every month, don't bother about weekdays
 then
@@ -75,4 +75,30 @@ rule "House Alarm"
 	if (HouseAlarm.state == ON){
 		sendHttpGetRequest("http://192.168.1.11:5000/buzzer/alarm/10")
 	}
+end
+
+rule "House Sleep On @ 2:00"
+when
+    Time cron "0 0 2 * * ?" // means 2:00:00 every day of every month, don't bother about weekdays
+then
+    sendCommand(HouseSleep, ON)
+end
+
+rule "House Sleep Off @ 10:00"
+when
+    Time cron "0 0 10 * * ?" // means 10:00:00 every day of every month, don't bother about weekdays
+then
+    sendCommand(HouseSleep, OFF)
+end
+
+rule "House Sleep"
+    when
+        Item FF_GBed_Strip received command
+    then
+        switch(receivedCommand) {
+            case ON : 
+            	sendCommand(Lights, OFF)
+            case OFF : 
+            	
+		}
 end

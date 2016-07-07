@@ -23,4 +23,7 @@ sitemap main label="House"
 	Frame label="Date" {
 		Text item=Date
 	}
+	Frame label="Status" {
+		Text item=Status
+	}
 }

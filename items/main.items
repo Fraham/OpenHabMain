@@ -7,18 +7,24 @@ Group Shutters 	(All)
 Group Weather 	(All)
 Group Status 	(All)
 Group IPDevices	(All)
+
 Switch HouseAlarm "House Alarm" (All)
+Switch HouseSleep "House Sleep" (All)
+
 Group gMotion
 Group FF_GBed 		"Graham's Bedroom" 		<bedroom> 	(gFF)
+
 /* active groups */
 Group:Switch:OR(ON, OFF) 		Lights 		"All Lights [(%d)]" 								(All)
 Group:Switch:OR(ON, OFF) 		Heating 	"No. of Active Heatings [(%d)]" 	<heating> 		(All)
 Group:Number:AVG 				Temperature	"Avg. Room Temperature [%.1f °C]" 	<temperature>	(Status)
 Group:Contact:OR(OPEN, CLOSED) 	Windows 	"Open windows [(%d)]"				<contact>		(All)
+
 Switch FF_GBed_Strip		"Strip Lights"							(FF_GBed, Lights)
-Switch FF_GBed_Buzzer		"Buzzer"								(FF_GBed, Lights)
-Number FF_GBed_Temperature	"Temperature [%.1f °C]"	<temperature>	(FF_GBed) 			{http="<[http://192.168.1.11:5000/temperature:10000:XSLT(temperature.xsl)]"}
-Switch MotionGBed   		"Graham's Bed" 			<present>  		(FF_GBed, gMotion)  {http="<[http://192.168.1.11:5000/motion:10000:XSLT(motion.xsl)]" }
+Switch FF_GBed_Buzzer		"Buzzer"								(FF_GBed)
+Number FF_GBed_Temperature	"Temperature [%.1f °C]"	<temperature>	(FF_GBed, Temperature) 	{http="<[http://192.168.1.11:5000/temperature:10000:XSLT(temperature.xsl)]"}
+Switch MotionGBed   		"Graham's Bed" 			<present>  		(FF_GBed, gMotion)		{http="<[http://192.168.1.11:5000/motion:10000:XSLT(motion.xsl)]" }
+
 /* Indoor Temperatures */
 Number Temperature_GF_Corridor 	"Temperature [%.1f °C]"	<temperature>	(Temperature, GF_Corridor)
 Number Temperature_GF_Toilet 	"Temperature [%.1f °C]"	<temperature>	(Temperature, GF_Toilet)
@@ -40,11 +46,13 @@ Number   Weather_Humidity      "Humidity [%d %%]" (Weather_Chart)    {weather="l
 Number   Weather_Wind_Speed    "Wind Speed [%.2f km/h]]" (Weather_Chart)    {weather="locationId=home, type=wind, property=speed"}
 Number   Weather_Precipitation_Probability    "Precipitation Probability [%d %%]" (Weather_Chart)    {weather="locationId=home, type=precipitation, property=probability"}
 DateTime Weather_LastUpdate		"Last Update [%1$ta %1$tR]"	<clock>
+
 /* NTP binding demo item */
 DateTime		Date			"Date [%1$tA, %1$td.%1$tm.%1$tY]"	<calendar>	{ ntp="Europe/London:en_EN" }
+
 /* IP Devices */
-Switch GrahamPhone   			"Grahams Phone" 			<present>  (IPDevices, Network)    { nh="192.168.1.8" }
-Switch RaspberryPiGBed   		"Raspberry Pi Graham's Bed" <present>  (IPDevices, Network, FF_GBed)    { nh="192.168.1.11" }
-Switch RaspberryPiMain   		"Raspberry Pi Main" <present>  (IPDevices, Network)    { nh="192.168.1.13" }
-Switch GrahamPCMain   		"Grahams Main Computer" <present>  (IPDevices, Network)    { nh="192.168.1.9" }
-Switch GrahamLaptop   		"Grahams Laptop" <present>  (IPDevices, Network)    { nh="192.168.1.10" }
+Switch GrahamPhone   	"Grahams Phone" 			<present>  (IPDevices, Network)    			{ nh="192.168.1.8" }
+Switch RaspberryPiGBed  "Raspberry Pi Graham's Bed" <present>  (IPDevices, Network, FF_GBed)	{ nh="192.168.1.11" }
+Switch RaspberryPiMain  "Raspberry Pi Main" 		<present>  (IPDevices, Network)    			{ nh="192.168.1.13" }
+Switch GrahamPCMain   	"Grahams Main Computer" 	<present>  (IPDevices, Network)    			{ nh="192.168.1.9" }
+Switch GrahamLaptop   	"Grahams Laptop" 			<present>  (IPDevices, Network)    			{ nh="192.168.1.10" }
