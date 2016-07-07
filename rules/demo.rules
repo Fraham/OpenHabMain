@@ -1,0 +1,83 @@
+import org.openhab.core.library.types.*
+import org.openhab.core.persistence.*
+import org.openhab.model.script.actions.*
+
+var Number counter = 1
+var Timer timer = null
+
+rule "Update max and min temperatures"
+when
+	Item Weather_Temperature changed or
+	Time cron "0 0 0 * * ?" or
+	System started
+then	
+	//postUpdate(Weather_Temp_Max, Weather_Temperature.maximumSince(now.toDateMidnight).state)
+	//postUpdate(Weather_Temp_Min, Weather_Temperature.minimumSince(now.toDateMidnight).state)
+	logInfo("Weather", "Temperature evolved of " + Weather_Temperature.deltaSince(now.minusMinutes(2)) + " degrees.")
+end
+
+/** shows how to use sensor values from the past */
+rule "Persistence Demo"
+when
+	Time cron "0 * * * * ?"
+then	
+	if(Weather_Temperature.changedSince(now.minusMinutes(1))) {
+		logInfo("PersistenceDemo", "2 minutes ago, the temperature was " + Weather_Temperature.historicState(now.minusMinutes(2)) + " degrees.")
+	}
+end
+
+// Creates an item that stores the last update time of this item
+rule "Records last weather update time"
+when
+  Item Weather_Temperature received update
+then
+  postUpdate(Weather_LastUpdate, new DateTimeType())
+end
+
+// This rule will be used to test Scale transformation service
+rule "Compute humidex"
+when
+        Item Weather_Temperature changed or
+	Item Weather_Humidity changed
+then
+	var Number T = Weather_Temperature.state as DecimalType
+	var Number H = Weather_Humidity.state as DecimalType	
+	var Number x = 7.5 * T/(237.7 + T)
+	var Number e = 6.112 * Math::pow(10, x.doubleValue) * H/100
+	var Number humidex = T + (new Double(5) / new Double(9)) * (e - 10)
+	postUpdate(Weather_Humidex, humidex)
+end
+
+rule "PI Strip Lights"
+    when
+        Item FF_GBed_Strip received command
+    then
+        switch(receivedCommand) {
+            case ON : sendHttpGetRequest("http://192.168.1.11:5000/on")
+            case OFF : sendHttpGetRequest("http://192.168.1.11:5000/off")
+		}
+end
+
+rule "Buzzer"
+	when
+		Item FF_GBed_Buzzer received command
+	then
+		sendHttpGetRequest("http://192.168.1.11:5000/buzzer/alarm")
+end
+
+rule "Buzzer @ 10:00"
+when
+    Time cron "0 0 10 * * ?" // means 10:00:00 every day of every month, don't bother about weekdays
+then
+    sendHttpGetRequest("http://192.168.1.11:5000/buzzer/alarm/10")
+end
+
+rule "House Alarm"
+	when 
+		Item gMotion changed from OFF to ON 
+	then
+	if (HouseAlarm.state == ON){
+		sendHttpGetRequest("http://192.168.1.11:5000/buzzer/alarm/10")
+	}
+end
+	
