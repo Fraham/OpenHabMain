@@ -9,6 +9,7 @@ sitemap main label="House"
 	}
 	Frame {
 		Switch item=HouseAlarm label="House Alarm"
+		Switch item=HouseMode label="House Mode"
 	}
 	Frame label="Weather" {
 		Text item=Weather_Temperature valuecolor=[Weather_LastUpdate=="Uninitialized"="lightgray",Weather_LastUpdate>90="lightgray",>25="orange",>15="green",>5="orange",<=5="blue"] {
@@ -24,6 +25,6 @@ sitemap main label="House"
 		Text item=Date
 	}
 	Frame label="Status" {
-		Text item=Status
+		Group item=Status
 	}
 }
