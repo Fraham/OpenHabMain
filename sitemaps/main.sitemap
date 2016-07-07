@@ -1,0 +1,24 @@
+sitemap main label="House"
+{
+	Frame {
+		Group item=gFF label="First Floor" icon="firstfloor"
+		Group item=gGF label="Ground Floor" icon="groundfloor"
+		Group item=gC label="Cellar" icon="cellar"	
+		Group item=Outdoor icon="garden"
+		Group item=IPDevices label="IP Devices" icon="garden" 
+	}
+	Frame {
+		Switch item=HouseAlarm label="House Alarm"
+	}
+	Frame label="Weather" {
+		Text item=Weather_Temperature valuecolor=[Weather_LastUpdate=="Uninitialized"="lightgray",Weather_LastUpdate>90="lightgray",>25="orange",>15="green",>5="orange",<=5="blue"] {
+			Frame {
+				Text item=Weather_Temperature
+				Text item=Weather_Humidity
+			}
+		}
+	}
+	Frame label="Date" {
+		Text item=Date
+	}
+}
