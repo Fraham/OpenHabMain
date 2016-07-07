@@ -15,6 +15,7 @@ sitemap main label="House"
 			Frame {
 				Text item=Weather_Temperature
 				Text item=Weather_Humidity
+				Text item=Weather_Wind_Speed
 			}
 		}
 	}
