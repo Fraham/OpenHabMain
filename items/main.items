@@ -57,3 +57,5 @@ Switch RaspberryPiMain  "Raspberry Pi Main" 		<present>  (IPDevices, Network)   
 Switch GrahamPCMain   	"Grahams Main Computer" 	<present>  (IPDevices, Network)    			{ nh="192.168.1.9" }
 Switch GrahamLaptop   	"Grahams Laptop" 			<present>  (IPDevices, Network)    			{ nh="192.168.1.10" }
 Switch DavidsPiZero   	"Davids Pi Zero" 			<present>  (IPDevices, Network)    			{ nh="192.168.1.14" }
+
+Switch MQTTTest   	"MQTT Test" 			<present>  (IPDevices, Network)    			{ mqtt=">[MainPiBroker:/test:command:ON:1],>[MainPiBroker:/test:command:OFF:0]" }
