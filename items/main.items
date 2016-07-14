@@ -22,8 +22,10 @@ Group:Contact:OR(OPEN, CLOSED) 	Windows 	"Open windows [(%d)]"				<contact>		(Al
 
 Switch FF_GBed_Strip		"Strip Lights"							(FF_GBed, Lights)		{ mqtt=">[MainPiBroker:/GrahamRoom/Strip:command:ON:on],>[MainPiBroker:/GrahamRoom/Strip:command:OFF:off]" }
 Switch FF_GBed_Buzzer		"Buzzer"								(FF_GBed)				{ mqtt=">[MainPiBroker:/GrahamRoom/Buzzer:command:*:1]" }
-Number FF_GBed_Temperature	"Temperature [%.1f °C]"	<temperature>	(FF_GBed, Temperature) 	{http="<[http://192.168.1.11:5000/temperature:10000:XSLT(temperature.xsl)]"}
-Switch MotionGBed   		"Graham's Bed" 			<present>  		(FF_GBed, gMotion)		{http="<[http://192.168.1.11:5000/motion:10000:XSLT(motion.xsl)]" }
+//Number FF_GBed_Temperature	"Temperature [%.1f °C]"	<temperature>	(FF_GBed, Temperature) 	{http="<[http://192.168.1.11:5000/temperature:10000:XSLT(temperature.xsl)]"}
+Number FF_GBed_Temperature	"Temperature [%.1f °C]"	<temperature>	(FF_GBed, Temperature) 	{mqtt="<[MainPiBroker:in/GrahamRoom/Temperature:state:XSLT(temperature.xsl)]"}
+//Switch MotionGBed   		"Graham's Bed" 			<present>  		(FF_GBed, gMotion)		{http="<[http://192.168.1.11:5000/motion:10000:XSLT(motion.xsl)]" }
+Switch MotionGBed   		"Graham's Bed" 			<present>  		(FF_GBed, gMotion)		{mqtt="<[MainPiBroker:in/GrahamRoom/Motion:state:XSLT(motion.xsl)]" }
 
 /* Indoor Temperatures */
 Number Temperature_GF_Corridor 	"Temperature [%.1f °C]"	<temperature>	(Temperature, GF_Corridor)
