@@ -43,7 +43,7 @@ then
 	postUpdate(Weather_Humidex, humidex)
 end
 
-rule "PI Strip Lights"
+/*rule "PI Strip Lights"
     when
         Item FF_GBed_Strip received command
     then
@@ -58,7 +58,7 @@ rule "Buzzer"
 		Item FF_GBed_Buzzer received command
 	then
 		sendHttpGetRequest("http://192.168.1.11:5000/buzzer/alarm")
-end
+end*/
 
 rule "Morning Alarm @ 10:00"
 when
