@@ -5,7 +5,8 @@ sitemap main label="House"
 		Group item=gGF label="Ground Floor" icon="groundfloor"
 		Group item=gC label="Cellar" icon="cellar"	
 		Group item=Outdoor icon="garden"
-		Group item=IPDevices label="IP Devices" icon="garden" 
+		Group item=IPDevices label="IP Devices" icon="garden"
+		Group item=gPlugSwitches label="Sockets" icon="socket"
 	}
 	Frame {
 		Switch item=HouseAlarm label="House Alarm"
