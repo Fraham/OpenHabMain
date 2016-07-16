@@ -29,7 +29,7 @@ Group:Contact:OR(OPEN, CLOSED) 	Windows 	"Open windows [(%d)]"				<contact>		(Al
 /*	Graham Bedroom */
 Switch FF_GBed_Strip		"Strip Lights"							(FF_GBed, Lights)		{ mqtt=">[MainPiBroker:/GrahamRoom/Strip:command:ON:on],>[MainPiBroker:/GrahamRoom/Strip:command:OFF:off]" }
 Color FF_GBed_Strip_Colour_Picker 		"Strip Lights Colour" <slider> (FF_GBed)
-String FF_GBed_Strip_Colour {mqtt=">[MainPiBroker:/GrahamRoom/StripColor:command:*:default]"}
+String FF_GBed_Strip_Colour {mqtt=">[MainPiBroker:/GrahamRoom/StripColour:command:*:default]"}
 
 Switch FF_GBed_Buzzer		"Buzzer"								(FF_GBed)				{ mqtt=">[MainPiBroker:/GrahamRoom/Buzzer:command:*:1]" }
 Number FF_GBed_Temperature	"Temperature [%.1f °C]"	<temperature>	(FF_GBed, Temperature) 	{ mqtt="<[MainPiBroker:in/GrahamRoom/Temperature:state:XSLT(temperature.xsl)]"}
