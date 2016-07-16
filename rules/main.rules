@@ -97,7 +97,6 @@ rule "Set RGB value"
 	when
         Item FF_GBed_Strip_Colour_Picker changed
 	then
-		sendCommand(FF_GBed_Buzzer, ON)
     	var hsbValue = FF_GBed_Strip_Colour_Picker.state as HSBType
     	var redValue   = hsbValue.red.intValue.toString
     	var greenValue = hsbValue.green.intValue.toString
