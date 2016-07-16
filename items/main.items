@@ -61,3 +61,4 @@ Switch RaspberryPiMain  "Raspberry Pi Main" 		<present>  (IPDevices, Network)   
 Switch GrahamPCMain   	"Grahams Main Computer" 	<present>  (IPDevices, Network)    			{ nh="192.168.1.9" }
 Switch GrahamLaptop   	"Grahams Laptop" 			<present>  (IPDevices, Network)    			{ nh="192.168.1.10" }
 Switch DavidsPiZero   	"Davids Pi Zero" 			<present>  (IPDevices, Network)    			{ nh="192.168.1.14" }
+String Network_WAN_IP "WAN IP address [%s]" <network> (IPDevices, Network) { http="<[http://icanhazip.com:600000:REGEX((.*?))]" }
