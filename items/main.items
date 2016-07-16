@@ -34,7 +34,7 @@ Switch MotionGBed   		"Bedroom Motion" 		<present>  		(FF_GBed, gMotion)		{ mqtt
 Switch BedSideLightGBed   	"Graham's Bed" 			<socket>  		(FF_GBed, gPlugSwitches, Lights)	{ mqtt=">[MainPiBroker:/GrahamRoom/Socket/1/3:command:ON:on],>[MainPiBroker:/GrahamRoom/Socket/1/3:command:OFF:off]" }
 
 /* 	Best Room */
-Dimmer XBMC_Volume "XBMC Volume [%.1f]" (XBMC) { xbmc="=[#piPlayer|Application.Volume]" }
+Dimmer XBMC_Volume "XBMC Volume [%.1f]" (XBMC, GF_BestRoom) { xbmc="=[#piPlayer|Application.Volume]" }
 
 Number Weather_Humidex			"Humidex [SCALE(humidex.scale):%s]" 			(Weather)
 Number Weather_Temp_Max 		"Todays Maximum [%.1f °C]"	<temperature> (Weather_Chart)
