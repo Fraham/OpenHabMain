@@ -92,3 +92,19 @@ rule "House Sleep"
             	}
 		}
 end
+
+rule "Set RGB value"
+
+when
+        Item FF_GBed_Strip_Colour_Picker changed
+then
+        var hsbValue = FF_GBed_Strip_Colour_Picker.state as HSBType
+        var redValue   = hsbValue.red.intValue.toString
+        var greenValue = hsbValue.green.intValue.toString
+        var blueValue  = hsbValue.blue.intValue.toString
+
+        var rgbMqttSring = redValue + "/" + blueValue + "/" + greenValue
+
+        postUpdate(FF_GBed_Strip_Colour, rgbMqttSring )
+
+end
