@@ -98,9 +98,9 @@ rule "Set RGB value"
         Item FF_GBed_Strip_Colour_Picker changed
 	then
     	var hsbValue = FF_GBed_Strip_Colour_Picker.state as HSBType
-    	var redValue   = hsbValue.red.intValue.toString
-    	var greenValue = hsbValue.green.intValue.toString
-    	var blueValue  = hsbValue.blue.intValue.toString
+    	var redValue   = (hsbValue.red.intValue * 2.55).intValue.toString
+    	var greenValue = (hsbValue.green.intValue * 2.55).intValue.toString
+    	var blueValue  = (hsbValue.blue.intValue * 2.55).intValue.toString
 
     	var rgbMqttSring = redValue + "/" + greenValue + "/" + blueValue
 
