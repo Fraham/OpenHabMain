@@ -24,7 +24,7 @@ Group GF_BestRoom 		"Best Room" 		<bedroom> 	(gGF)
 Group:Switch:OR(ON, OFF) 		Lights 		"All Lights [(%d)]" 								(Status)
 Group:Switch:OR(ON, OFF) 		Heating 	"No. of Active Heatings [(%d)]" 	<heating> 		(All)
 Group:Number:AVG 				Temperature	"Avg. Room Temperature [%.1f °C]" 	<temperature>	(Status)
-Group:Contact:OR(OPEN, CLOSED) 	Windows 	"Open windows [(%d)]"				<contact>		(All)
+Group:Contact:OR(OPEN, CLOSED) 	Windows 	"Open windows [(%d)]"				<contact>		(Status)
 Switch PullSwitch "git Pull" (Status) {exec=">[ON:./configurations/scripts/gitPull.sh], >[OFF:./configurations/scripts/gitPull.sh]"}
 
 /*	Graham Bedroom */
