@@ -37,7 +37,7 @@ Switch FF_GBed_Buzzer		"Buzzer"								(FF_GBed)				{ mqtt=">[MainPiBroker:/Grah
 Number FF_GBed_Temperature	"Temperature [%.1f °C]"	<temperature>	(FF_GBed, Temperature) 	{ mqtt="<[MainPiBroker:in/GrahamRoom/Temperature:state:XSLT(temperature.xsl)]"}
 Switch MotionGBed   		"Bedroom Motion" 		<present>  		(FF_GBed, gMotion)		{ mqtt="<[MainPiBroker:in/GrahamRoom/Motion:state:XSLT(motion.xsl)]" }
 Switch BedSideLightGBed   	"Graham's Bed Side Light" 			<socket>  		(FF_GBed, gPlugSwitches, Lights)	{ mqtt=">[MainPiBroker:/GrahamRoom/Socket/1/3:command:ON:on],>[MainPiBroker:/GrahamRoom/Socket/1/3:command:OFF:off]" }
-Switch FF_GBed_Fan   	"Graham's Fan" 			<socket>  		(FF_GBed, gPlugSwitches, gFan)	{ mqtt=">[MainPiBroker:/GrahamRoom/Socket/1/2:command:ON:on],>[MainPiBroker:/GrahamRoom/Socket/1/2:command:OFF:off]" }
+Switch FF_GBed_Fan   	"Graham's Fan" 			<socket>  		(FF_GBed, gPlugSwitches, gFan)	{ mqtt=">[MainPiBroker:/GrahamRoom/Socket/1/4:command:ON:on],>[MainPiBroker:/GrahamRoom/Socket/1/4:command:OFF:off]" }
 
 /* 	Best Room */
 Dimmer XBMC_Volume "XBMC Volume [%.1f]" (XBMC, GF_BestRoom) { xbmc="=[#piPlayer|Application.Volume]" }

@@ -119,7 +119,7 @@ rule "Room Temperature"
 	when
 		Item FF_GBed_Temperature changed
 	then
-	var temperature = FF_GBed_Temperature.state as DecimalType
+	val temperature = FF_GBed_Temperature.state as DecimalType
 	
 	if (temperature > 21 && FF_GBed_Fan.state == OFF){
 		sendCommand(FF_GBed_Fan, ON)
