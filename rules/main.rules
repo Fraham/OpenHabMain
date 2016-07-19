@@ -114,3 +114,17 @@ rule "Monitor WAN IP"
 	    //perform any action needed
     	logInfo("MonitorWANIP", "WAN IP changed to " + Network_WAN_IP.state)
 end
+
+rule "Room Temperature"
+	when
+		Item FF_GBed_Temperature changed
+	then
+	var temperature = FF_GBed_Temperature.state as DecimalType
+	
+	if (temperature > 21 && FF_GBed_Fan.state == OFF){
+		sendCommand(FF_GBed_Fan, ON)
+	}
+	else if (temperature < 18 && FF_GBed_Fan.state == ON){
+		sendCommand(FF_GBed_Fan, OFF)
+	}
+end		
